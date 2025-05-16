@@ -5,17 +5,20 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const flatmorphismButtonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 overflow-hidden",
+  "relative inline-flex items-center justify-center whitespace-nowrap text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 overflow-hidden",
   {
     variants: {
       variant: {
-        default: "bg-[#d2a78f] text-[#3a1a0e] border-[#d2a78f]",
-        emoji: "bg-[#d2a78f] text-[#3a1a0e] border-[#d2a78f] rounded-full",
+        default: "bg-[#d2a78f] text-[#2a0e01] border-black",
+        emoji: "bg-[#d2a78f] text-[#2a0e01] border-black rounded-full",
+        blue: "bg-[#a7c4d2] text-[#0e283a] border-black",
+        green: "bg-[#a7d2a8] text-[#0e3a12] border-black",
+        purple: "bg-[#d2a7c4] text-[#3a0e28] border-black",
       },
       size: {
-        default: "h-14 px-8 py-4 text-base",
-        sm: "h-10 rounded-full px-5 py-2 text-sm",
-        lg: "h-16 rounded-full px-10 py-5 text-lg",
+        default: "h-14 px-8 py-4 text-base rounded-[32px]",
+        sm: "h-10 px-5 py-2 text-sm rounded-[24px]",
+        lg: "h-16 px-10 py-5 text-lg rounded-[36px]",
         icon: "h-14 w-14 rounded-full",
       },
     },
@@ -38,17 +41,24 @@ const FlatmorphismButton = React.forwardRef<HTMLButtonElement, FlatmorphismButto
     return (
       <Comp
         className={cn(flatmorphismButtonVariants({ variant, size, className }), 
-          "relative border-2 shadow-lg",
-          "before:absolute before:inset-0 before:bg-gradient-to-b before:from-black/30 before:to-transparent before:opacity-30",
-          "after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-white/50 after:via-transparent after:to-black/10 after:opacity-30",
+          "border-[2px]",
         )}
         ref={ref}
         style={{
-          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.2)"
+          boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)",
+          position: "relative",
+          overflow: "hidden"
         }}
         {...props}
       >
-        <span className="relative z-10 flex items-center justify-center gap-2">
+        {/* Light rim at the top edge */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#f5e6dc] opacity-80 rounded-t-full"></div>
+        
+        {/* Inner shadow gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(255,255,255,0.15)] via-transparent to-[rgba(0,0,0,0.2)]"></div>
+        
+        {/* Button content */}
+        <span className="relative z-10 flex items-center justify-center gap-2 font-bold">
           {children}
         </span>
       </Comp>
@@ -58,3 +68,4 @@ const FlatmorphismButton = React.forwardRef<HTMLButtonElement, FlatmorphismButto
 FlatmorphismButton.displayName = "FlatmorphismButton"
 
 export { FlatmorphismButton, flatmorphismButtonVariants }
+

@@ -82,7 +82,7 @@ export default function Home() {
             Flatmorphism Buttons
           </h2>
           <p className="text-muted-foreground mb-8">
-            These buttons showcase the flatmorphism design style with subtle gradients and shadows.
+            These buttons showcase the flatmorphism design style with 3D effects, black outlines, and subtle gradients.
           </p>
           <div className="flex flex-col gap-8 items-center">
             <div className="flex flex-wrap gap-6 justify-center">
@@ -104,7 +104,7 @@ export default function Home() {
                 💩
               </FlatmorphismButton>
               
-              <FlatmorphismButton className="bg-[#a7c4d2] border-[#a7c4d2] text-[#0e283a]">
+              <FlatmorphismButton variant="blue">
                 Custom Color
               </FlatmorphismButton>
               
@@ -112,10 +112,17 @@ export default function Home() {
                 Regular Button
               </Button>
             </div>
+            
+            <div className="mt-6">
+              <a href="/flatmorphism" className="text-blue-600 hover:underline">
+                View More Examples →
+              </a>
+            </div>
           </div>
         </div>
       </section>
     </div>
   )
 }
+
 

@@ -46,22 +46,22 @@ export default function FlatmorphismDemo() {
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-2xl font-semibold mb-6">Custom Colors</h2>
             <div className="flex flex-wrap gap-6 mb-8">
-              <FlatmorphismButton className="bg-[#a7c4d2] border-[#a7c4d2] text-[#0e283a]">
+              <FlatmorphismButton variant="blue">
                 Blue Variant
               </FlatmorphismButton>
               
-              <FlatmorphismButton className="bg-[#a7d2a8] border-[#a7d2a8] text-[#0e3a12]">
+              <FlatmorphismButton variant="green">
                 Green Variant
               </FlatmorphismButton>
               
-              <FlatmorphismButton className="bg-[#d2a7c4] border-[#d2a7c4] text-[#3a0e28]">
+              <FlatmorphismButton variant="purple">
                 Purple Variant
               </FlatmorphismButton>
             </div>
             
             <p className="text-gray-600 mt-6">
               These buttons use a design technique called "flatmorphism" - a blend of flat design with subtle 3D effects.
-              The style features soft gradients, subtle shadows, and a glossy finish to create depth while maintaining a modern look.
+              The style features a distinct black outline, a light rim at the top edge, and a soft shadow to create depth while maintaining a modern look.
             </p>
           </div>
         </div>
