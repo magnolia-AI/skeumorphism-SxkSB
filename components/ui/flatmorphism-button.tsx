@@ -9,11 +9,11 @@ const flatmorphismButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[#d2a78f] text-[#2a0e01] border-black",
-        emoji: "bg-[#d2a78f] text-[#2a0e01] border-black rounded-full",
-        blue: "bg-[#a7c4d2] text-[#0e283a] border-black",
-        green: "bg-[#a7d2a8] text-[#0e3a12] border-black",
-        purple: "bg-[#d2a7c4] text-[#3a0e28] border-black",
+        default: "bg-[#d2a78f] text-[#2a0e01]",
+        emoji: "bg-[#d2a78f] text-[#2a0e01] rounded-full",
+        blue: "bg-[#a7c4d2] text-[#0e283a]",
+        green: "bg-[#a7d2a8] text-[#0e3a12]",
+        purple: "bg-[#d2a7c4] text-[#3a0e28]",
       },
       size: {
         default: "h-14 px-8 py-4 text-base rounded-[32px]",
@@ -40,22 +40,34 @@ const FlatmorphismButton = React.forwardRef<HTMLButtonElement, FlatmorphismButto
     const Comp = asChild ? Slot : "button"
     return (
       <Comp
-        className={cn(flatmorphismButtonVariants({ variant, size, className }), 
-          "border-[2px]",
-        )}
+        className={cn(flatmorphismButtonVariants({ variant, size, className }))}
         ref={ref}
         style={{
           boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)",
           position: "relative",
-          overflow: "hidden"
+          overflow: "hidden",
+          border: "none"
         }}
         {...props}
       >
+        {/* Fading border effect - stronger at top, fading toward bottom */}
+        <div className="absolute inset-0 rounded-[inherit] border-0" 
+          style={{
+            background: ,
+            padding: "2px",
+            WebkitMask: 
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+            pointerEvents: "none"
+          }}
+        ></div>
+        
         {/* Light rim at the top edge */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#f5e6dc] opacity-80 rounded-t-full"></div>
+        <div className="absolute top-0 left-[3px] right-[3px] h-[2px] bg-[#f5e6dc] opacity-80 rounded-t-full"></div>
         
         {/* Inner shadow gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(255,255,255,0.15)] via-transparent to-[rgba(0,0,0,0.2)]"></div>
+        <div className="absolute inset-[2px] rounded-[inherit] bg-gradient-to-b from-[rgba(255,255,255,0.15)] via-transparent to-[rgba(0,0,0,0.2)]"></div>
         
         {/* Button content */}
         <span className="relative z-10 flex items-center justify-center gap-2 font-bold">
@@ -68,4 +80,5 @@ const FlatmorphismButton = React.forwardRef<HTMLButtonElement, FlatmorphismButto
 FlatmorphismButton.displayName = "FlatmorphismButton"
 
 export { FlatmorphismButton, flatmorphismButtonVariants }
+
 
