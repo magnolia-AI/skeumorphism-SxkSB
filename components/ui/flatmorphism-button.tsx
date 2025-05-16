@@ -1,92 +1,94 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-const buttonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50", 
+const flatmorphismButtonVariants = cva(
+  "relative inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: [
-          "bg-gradient-to-b from-[#d7b7a3] to-[#bb9f8c]", 
-          "text-[#2a0e02]",
-          "border-[2px] border-black",
-          "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_4px_8px_rgba(0,0,0,0.25)]",
-          "relative overflow-hidden",
-          "after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-black/10 after:pointer-events-none",
-          "before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-t before:from-transparent before:to-white/20 before:pointer-events-none before:rounded-[inherit]",
-        ],
-        blue: [
-          "bg-gradient-to-b from-[#b1c5d3] to-[#8eaac0]", 
-          "text-[#0a1f2e]",
-          "border-[2px] border-black",
-          "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_4px_8px_rgba(0,0,0,0.25)]",
-          "relative overflow-hidden",
-          "after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-black/10 after:pointer-events-none",
-          "before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-t before:from-transparent before:to-white/20 before:pointer-events-none before:rounded-[inherit]",
-        ],
-        green: [
-          "bg-gradient-to-b from-[#b1d3b8] to-[#8ec09a]", 
-          "text-[#0a2e14]",
-          "border-[2px] border-black",
-          "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_4px_8px_rgba(0,0,0,0.25)]",
-          "relative overflow-hidden",
-          "after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-black/10 after:pointer-events-none",
-          "before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-t before:from-transparent before:to-white/20 before:pointer-events-none before:rounded-[inherit]",
-        ],
-        purple: [
-          "bg-gradient-to-b from-[#c5b1d3] to-[#aa8ec0]", 
-          "text-[#1f0a2e]",
-          "border-[2px] border-black",
-          "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_4px_8px_rgba(0,0,0,0.25)]",
-          "relative overflow-hidden",
-          "after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-black/10 after:pointer-events-none",
-          "before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-t before:from-transparent before:to-white/20 before:pointer-events-none before:rounded-[inherit]",
-        ],
-        emoji: [
-          "bg-gradient-to-b from-[#d7b7a3] to-[#bb9f8c]", 
-          "text-[#2a0e02]",
-          "border-[2px] border-black",
-          "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.6),0_4px_8px_rgba(0,0,0,0.25)]",
-          "relative overflow-hidden",
-          "after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:to-black/10 after:pointer-events-none",
-          "before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-t before:from-transparent before:to-white/20 before:pointer-events-none before:rounded-[inherit]",
-        ],
+        default: "",
+        circle: "rounded-full aspect-square",
       },
       size: {
-        default: "h-12 px-6 rounded-full",
-        sm: "h-9 px-4 rounded-full text-sm",
-        lg: "h-14 px-8 rounded-full text-lg",
-        icon: "h-12 w-12 rounded-full",
+        default: "h-14 px-8",
+        sm: "h-10 px-5",
+        lg: "h-16 px-10",
+        icon: "h-10 w-10",
+      },
+      color: {
+        beige: "bg-[#d9b99b]",
+        blue: "bg-[#a5c1d3]",
+        white: "bg-white",
       },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      color: "beige",
     },
   }
-)
+);
 
-export interface ButtonProps
+export interface FlatmorphismButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+    VariantProps<typeof flatmorphismButtonVariants> {
+  asChild?: boolean;
+  icon?: React.ReactNode;
 }
 
-const FlatmorphismButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? React.Fragment : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+const FlatmorphismButton = React.forwardRef<
+  HTMLButtonElement,
+  FlatmorphismButtonProps
+>(({ className, variant, size, color, children, icon, ...props }, ref) => {
+  return (
+    <div className="relative group">
+      {/* Outer wrapper with border effect */}
+      <div 
+        className={cn(
+          "absolute inset-0 rounded-full border-2 border-black",
+          variant === "circle" ? "rounded-full" : "rounded-full"
+        )}
+      />
+      
+      {/* Button element */}
+      <button
+        className={cn(
+          flatmorphismButtonVariants({ variant, size, color, className }),
+          "relative z-10 border-2 border-transparent shadow-[0_6px_10px_rgba(0,0,0,0.15)]",
+          "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-black/30 before:to-transparent before:mix-blend-darken",
+          "after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-b after:from-white/100 after:to-transparent after:opacity-30 after:mix-blend-soft-light",
+          "[&>span]:relative [&>span]:z-10 [&>span]:bg-gradient-to-b [&>span]:from-black/100 [&>span]:via-black/35 [&>span]:to-black/100 [&>span]:bg-clip-text [&>span]:text-transparent [&>span]:mix-blend-darken [&>span]:opacity-45"
+        )}
         ref={ref}
         {...props}
+      >
+        {/* Inner shadow effect */}
+        <div className="absolute inset-0 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)] mix-blend-darken" />
+        
+        {/* Inner highlight effect */}
+        <div className="absolute inset-0 rounded-full shadow-[inset_0_-2px_4px_rgba(255,255,255,0.3)] mix-blend-soft-light" />
+        
+        {/* Content wrapper */}
+        <div className="relative z-20 flex items-center justify-center gap-2">
+          {icon && <span className="opacity-45 mix-blend-darken">{icon}</span>}
+          {typeof children === 'string' ? <span>{children}</span> : children}
+        </div>
+      </button>
+      
+      {/* Drop shadow effect */}
+      <div 
+        className={cn(
+          "absolute -bottom-1 left-0 right-0 h-4 blur-sm bg-black/20 rounded-full",
+          variant === "circle" ? "aspect-square" : ""
+        )}
       />
-    )
-  }
-)
-FlatmorphismButton.displayName = "FlatmorphismButton"
+    </div>
+  );
+});
 
-export { FlatmorphismButton, buttonVariants }
+FlatmorphismButton.displayName = "FlatmorphismButton";
+
+export { FlatmorphismButton, flatmorphismButtonVariants };
