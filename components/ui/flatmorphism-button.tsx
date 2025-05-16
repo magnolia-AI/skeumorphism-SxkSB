@@ -20,6 +20,7 @@ const flatmorphismButtonVariants = cva(
       },
       color: {
         beige: "bg-[#d9b99b]",
+        darkBeige: "bg-[#c5a687]", 
         blue: "bg-[#a5c1d3]",
         white: "bg-white",
       },
@@ -27,7 +28,7 @@ const flatmorphismButtonVariants = cva(
     defaultVariants: {
       variant: "default",
       size: "default",
-      color: "beige",
+      color: "darkBeige",
     },
   }
 );
@@ -48,7 +49,7 @@ const FlatmorphismButton = React.forwardRef<
       {/* Outer wrapper with border effect */}
       <div 
         className={cn(
-          "absolute inset-0 rounded-full border-2 border-black",
+          "absolute inset-0 rounded-full border-[3px] border-black",
           variant === "circle" ? "rounded-full" : "rounded-full"
         )}
       />
@@ -57,19 +58,19 @@ const FlatmorphismButton = React.forwardRef<
       <button
         className={cn(
           flatmorphismButtonVariants({ variant, size, color, className }),
-          "relative z-10 border-2 border-transparent shadow-[0_6px_10px_rgba(0,0,0,0.15)]",
+          "relative z-10 border-[3px] border-transparent shadow-[0_6px_10px_rgba(0,0,0,0.15)]",
           "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-black/30 before:to-transparent before:mix-blend-darken",
-          "after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-b after:from-white/100 after:to-transparent after:opacity-30 after:mix-blend-soft-light",
-          "[&>span]:relative [&>span]:z-10 [&>span]:bg-gradient-to-b [&>span]:from-black/100 [&>span]:via-black/35 [&>span]:to-black/100 [&>span]:bg-clip-text [&>span]:text-transparent [&>span]:mix-blend-darken [&>span]:opacity-45"
+          "after:absolute after:inset-0 after:rounded-full after:bg-gradient-to-b after:from-white/50 after:to-transparent after:opacity-50 after:mix-blend-soft-light",
+          "[&>span]:relative [&>span]:z-10 [&>span]:bg-gradient-to-b [&>span]:from-black/100 [&>span]:via-black/35 [&>span]:to-black/100 [&>span]:bg-clip-text [&>span]:text-transparent [&>span]:mix-blend-darken [&>span]:opacity-45 [&>span]:font-bold"
         )}
         ref={ref}
         {...props}
       >
         {/* Inner shadow effect */}
-        <div className="absolute inset-0 rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)] mix-blend-darken" />
+        <div className="absolute inset-0 rounded-full shadow-[inset_0_3px_6px_rgba(0,0,0,0.25)] mix-blend-darken" />
         
-        {/* Inner highlight effect */}
-        <div className="absolute inset-0 rounded-full shadow-[inset_0_-2px_4px_rgba(255,255,255,0.3)] mix-blend-soft-light" />
+        {/* Inner highlight effect - top edge highlight */}
+        <div className="absolute inset-x-0 top-0 h-[40%] rounded-t-full bg-gradient-to-b from-white/40 to-transparent mix-blend-soft-light" />
         
         {/* Content wrapper */}
         <div className="relative z-20 flex items-center justify-center gap-2">
@@ -81,7 +82,7 @@ const FlatmorphismButton = React.forwardRef<
       {/* Drop shadow effect */}
       <div 
         className={cn(
-          "absolute -bottom-1 left-0 right-0 h-4 blur-sm bg-black/20 rounded-full",
+          "absolute -bottom-1 left-0 right-0 h-3 blur-md bg-black/25 rounded-full transform scale-x-[0.95]",
           variant === "circle" ? "aspect-square" : ""
         )}
       />
@@ -92,3 +93,5 @@ const FlatmorphismButton = React.forwardRef<
 FlatmorphismButton.displayName = "FlatmorphismButton";
 
 export { FlatmorphismButton, flatmorphismButtonVariants };
+
+
