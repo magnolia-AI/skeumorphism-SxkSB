@@ -53,7 +53,7 @@ const FlatmorphismButton = React.forwardRef<HTMLButtonElement, FlatmorphismButto
         {/* Fading border effect - stronger at top, fading toward bottom */}
         <div className="absolute inset-0 rounded-[inherit] border-0" 
           style={{
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3))",
+            background: "linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 100%)",
             padding: "2px",
             WebkitMask: 
               "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
