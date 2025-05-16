@@ -1,5 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
+import { FlatmorphismButton } from '@/components/ui/flatmorphism-button'
 import { Card, CardContent } from '@/components/ui/card'
 import { useToast } from "@/hooks/use-toast"
 
@@ -78,16 +79,43 @@ export default function Home() {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-[800px] mx-auto text-center">
           <h2 className="text-3xl font-bold tracking-tight mb-6">
-            Template CTA Section
+            Flatmorphism Buttons
           </h2>
           <p className="text-muted-foreground mb-8">
-            This is a template call-to-action section. Replace with your own content and styling.
+            These buttons showcase the flatmorphism design style with subtle gradients and shadows.
           </p>
-          <Button variant="outline" className="px-8">
-            Sample CTA
-          </Button>
+          <div className="flex flex-col gap-8 items-center">
+            <div className="flex flex-wrap gap-6 justify-center">
+              <FlatmorphismButton>
+                Click
+              </FlatmorphismButton>
+              
+              <FlatmorphismButton size="lg">
+                Large Button
+              </FlatmorphismButton>
+              
+              <FlatmorphismButton size="sm">
+                Small
+              </FlatmorphismButton>
+            </div>
+            
+            <div className="flex flex-wrap gap-6 justify-center">
+              <FlatmorphismButton variant="emoji" size="icon">
+                💩
+              </FlatmorphismButton>
+              
+              <FlatmorphismButton className="bg-[#a7c4d2] border-[#a7c4d2] text-[#0e283a]">
+                Custom Color
+              </FlatmorphismButton>
+              
+              <Button variant="outline" className="px-8">
+                Regular Button
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   )
 }
+
